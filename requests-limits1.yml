@@ -1,0 +1,30 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: apache-deployment
+  labels:
+    type: webserver
+    author: raju
+spec:
+  replicas: 3
+  selector: 
+    matchLabels: 
+      type: webserver
+  template:
+    metadata:
+      name: apache-pod
+      labels: 
+        type: webserver
+    spec:
+      containers:
+        - name: apache2
+          image: apache
+          resources:
+            requests:
+              cpu: 200M
+              memory: 64M
+            limits:
+              cpu: 400M
+              memory: 128M
+...

@@ -1,0 +1,16 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: clusterip-service
+  labels:
+    author: raju
+spec:
+  type: ClusterIP
+  ports: 
+    - targetPort: 3306
+      port: 3306
+  selector:
+    app: db
+    author: raju
+...

@@ -1,0 +1,17 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: loadbalencer-service
+  labels: 
+    author: raju
+spec: 
+  type: LoadBalancer
+  ports:
+    - targetPort: 3306
+      port: 3306
+      nodePort: 30009
+  selector: 
+    app: db
+    author: raju 
+...

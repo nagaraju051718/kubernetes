@@ -1,0 +1,22 @@
+---
+apiVersion: apps/v1
+kind: DaemonSet
+metadata: 
+  name: ghost-ds
+  labels: 
+    type: webserver
+    author: raju
+spec:
+  selector: 
+    matchLabels:
+      type: webserver
+  template:
+    metadata: 
+      name: ghost-pod
+      labels:
+        type: webserver
+    spec: 
+      containers:
+        - name: ghost
+          image: ghost
+...
