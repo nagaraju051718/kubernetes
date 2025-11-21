@@ -1,0 +1,39 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: jenkins-deployment
+  labels:
+    type: ci-cd
+    author: raju
+spec:
+  selector: 
+    matchLabels:
+      type: ci-cd
+  template:
+    metadata:
+      name: jenkins-pod
+      labels:
+        type: ci-cd
+    spec:
+      containers:
+        - name: jenkins
+          image: jenkins/jenkins
+          ports: 
+            - containerPort: 8080
+              hostPort: 9090
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: jenkins-service
+  labels:
+    author: raju
+spec:
+  type: ClusterIP
+  ports:
+    - targetPort: 8080
+      port: 8080
+  selector: 
+    type: ci-cd
+...
